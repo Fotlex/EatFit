@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>resources/logo.png</file>
+    <file>resources/edit.png</file>
+    <file>resources/calendar.png</file>
+    <file>resources/home.png</file>
+    <file>resources/menu.png</file>
+    <file>resources/pizza.png</file>
+    <file>resources/profile.png</file>
+  </qresource>
+</RCC>
