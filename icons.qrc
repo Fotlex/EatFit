@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="icons">
+    <file>resources/add.png</file>
+    <file>resources/mini-edit.png</file>
+    <file>resources/remove.png</file>
     <file>resources/logo.png</file>
     <file>resources/edit.png</file>
     <file>resources/calendar.png</file>

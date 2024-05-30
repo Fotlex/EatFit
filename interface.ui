@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>EatFit</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/resources/logo.png</normaloff>:/icons/resources/logo.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">*{
@@ -110,6 +114,22 @@ QLineEdit{
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="label_5">
+            <property name="minimumSize">
+             <size>
+              <width>48</width>
+              <height>48</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="icons.qrc">:/icons/resources/logo.png</pixmap>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QLabel" name="label">
             <property name="font">
              <font>
@@ -136,14 +156,7 @@ QLineEdit{
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="text">
-             <string>PushButton</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="calendarBtn">
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
@@ -403,19 +416,6 @@ QLineEdit{
                 <property name="bottomMargin">
                  <number>20</number>
                 </property>
-                <item>
-                 <widget class="QPushButton" name="pushButton_7">
-                  <property name="text">
-                   <string>PushButton</string>
-                  </property>
-                  <property name="checkable">
-                   <bool>false</bool>
-                  </property>
-                  <property name="autoExclusive">
-                   <bool>false</bool>
-                  </property>
-                 </widget>
-                </item>
                </layout>
               </widget>
              </item>
@@ -429,64 +429,7 @@ QLineEdit{
         <widget class="QWidget" name="mainBodyContent" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QStackedWidget" name="stackedWidget">
-            <widget class="QWidget" name="homePage">
-             <widget class="QLabel" name="label_4">
-              <property name="geometry">
-               <rect>
-                <x>100</x>
-                <y>160</y>
-                <width>451</width>
-                <height>91</height>
-               </rect>
-              </property>
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Здесь отображается выбранный день</string>
-              </property>
-              <property name="textFormat">
-               <enum>Qt::AutoText</enum>
-              </property>
-              <property name="scaledContents">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </widget>
-            <widget class="QWidget" name="productsPage">
-             <widget class="QLabel" name="label_3">
-              <property name="geometry">
-               <rect>
-                <x>130</x>
-                <y>170</y>
-                <width>371</width>
-                <height>91</height>
-               </rect>
-              </property>
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Здесь изменяются продукты</string>
-              </property>
-              <property name="textFormat">
-               <enum>Qt::AutoText</enum>
-              </property>
-              <property name="scaledContents">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </widget>
-           </widget>
+           <widget class="QStackedWidget" name="stackedWidget"/>
           </item>
          </layout>
         </widget>
@@ -538,7 +481,7 @@ QLineEdit{
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_9">
                 <item>
-                 <widget class="QLineEdit" name="lineEdit">
+                 <widget class="QLineEdit" name="weightLineEdit">
                   <property name="font">
                    <font>
                     <weight>75</weight>
@@ -551,7 +494,7 @@ QLineEdit{
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_2">
+                 <widget class="QLineEdit" name="heightLineEdit">
                   <property name="font">
                    <font>
                     <weight>75</weight>
@@ -564,12 +507,15 @@ QLineEdit{
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_3">
+                 <widget class="QLineEdit" name="ageLineEdit">
                   <property name="font">
                    <font>
                     <weight>75</weight>
                     <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="inputMethodHints">
+                   <set>Qt::ImhNone</set>
                   </property>
                   <property name="placeholderText">
                    <string>Возраст</string>
