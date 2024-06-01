@@ -7,7 +7,7 @@ class ProductManager:
         self.cursor = self.conn.cursor()
         self.create_table()
 
-    def create_table(self):
+    def create_table(self) -> None:
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS products (
                                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                                 name TEXT NOT NULL,
@@ -18,7 +18,7 @@ class ProductManager:
                                 )''')
         self.conn.commit()
 
-    def add_product(self, name, proteins, fats, carbohydrates, calories):
+    def add_product(self, name, proteins, fats, carbohydrates, calories) -> None:
         self.cursor.execute('''SELECT id FROM products WHERE name = ?''', (name,))
         existing_product = self.cursor.fetchone()
         if not existing_product:
@@ -28,11 +28,11 @@ class ProductManager:
                 (name, proteins, fats, carbohydrates, calories))
             self.conn.commit()
 
-    def delete_product(self, product_name):
+    def delete_product(self, product_name) -> None:
         self.cursor.execute('''DELETE FROM products WHERE name = ?''', (product_name,))
         self.conn.commit()
 
-    def update_product(self, product_name, new_name, new_proteins, new_fats, new_carbohydrates, new_calories):
+    def update_product(self, product_name, new_name, new_proteins, new_fats, new_carbohydrates, new_calories) -> None:
         self.cursor.execute('''SELECT id FROM products WHERE name = ?''', (new_name,))
         existing_product = self.cursor.fetchone()
         self.cursor.execute('''SELECT id FROM products WHERE name = ?''', (product_name,))
@@ -44,12 +44,12 @@ class ProductManager:
                 (new_name, new_proteins, new_fats, new_carbohydrates, new_calories, product_name))
             self.conn.commit()
 
-    def get_products(self):
+    def get_products(self) -> list:
         self.cursor.execute("""SELECT name, proteins, fats, carbohydrates, calories FROM products""")
         products = self.cursor.fetchall()
         return products
 
-    def get_all_names_products(self):
+    def get_all_names_products(self) -> list:
         self.cursor.execute("SELECT name FROM products")
         names = self.cursor.fetchall()
         return names
@@ -64,12 +64,12 @@ class ProductManager:
 
 
 class DailyProductManager:
-    def __init__(self, db_name='database.db'):
+    def __init__(self, db_name='database.db') -> None:
         self.conn = sqlite3.connect(db_name)
         self.cursor = self.conn.cursor()
         self.create_table()
 
-    def create_table(self):
+    def create_table(self) -> None:
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS daily_products (
                                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                                 date TEXT NOT NULL,
@@ -79,7 +79,7 @@ class DailyProductManager:
                                 )''')
         self.conn.commit()
 
-    def add_daily_product(self, date, product_id, amount):
+    def add_daily_product(self, date, product_id, amount) -> None:
         existing_daily_product = self.get_daily_product(date, product_id)
         if existing_daily_product:
             daily_product_id = existing_daily_product[0]
@@ -90,17 +90,17 @@ class DailyProductManager:
                                 (date, product_id, amount))
             self.conn.commit()
 
-    def delete_daily_product(self, daily_product_id):
+    def delete_daily_product(self, daily_product_id) -> None:
         self.cursor.execute('''DELETE FROM daily_products WHERE id = ?''', (daily_product_id,))
         self.conn.commit()
 
-    def update_daily_product(self, daily_product_id, new_date, new_product_id, new_amount):
+    def update_daily_product(self, daily_product_id, new_date, new_product_id, new_amount) -> None:
         if self.cursor.execute("SELECT id FROM daily_products WHERE id = ?", (daily_product_id,)).fetchone():
             self.cursor.execute('''UPDATE daily_products SET date = ?, product_id = ?, amount = ? WHERE id = ?''',
                                 (new_date, new_product_id, new_amount, daily_product_id))
             self.conn.commit()
 
-    def edit_daily_product(self, daily_product_id, new_date, new_product_id, new_amount):
+    def edit_daily_product(self, daily_product_id, new_date, new_product_id, new_amount) -> None:
         existing_daily_product = self.get_daily_product(new_date, new_product_id)
         if existing_daily_product and existing_daily_product[0] != daily_product_id:
             self.delete_daily_product(daily_product_id)
@@ -109,7 +109,7 @@ class DailyProductManager:
 
         self.update_daily_product(daily_product_id, new_date, new_product_id, new_amount)
 
-    def get_daily_products(self, date):
+    def get_daily_products(self, date) -> list:
         self.cursor.execute(
             """
                 SELECT 
@@ -145,7 +145,7 @@ class UserDataManager:
         self.cursor = self.conn.cursor()
         self.create_table()
 
-    def create_table(self):
+    def create_table(self) -> None:
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS user_info (
                 id INTEGER PRIMARY KEY,
@@ -157,7 +157,7 @@ class UserDataManager:
         self.cursor.execute("INSERT OR IGNORE INTO user_info (id, height, weight, age) VALUES (1, 100, 40, 10)")
         self.conn.commit()
 
-    def update_user_info(self, height, weight, age):
+    def update_user_info(self, height, weight, age) -> None:
         updates, values = [], []
 
         if height:
