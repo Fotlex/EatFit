@@ -79,7 +79,7 @@ class EatFitApp(QMainWindow, Ui_MainWindow):
 
         user = self.udm.get_user_info()
         age = user[2]
-        age_text = "год" if age == 1 else "года" if age <= 4 else "лет"
+        age_text = "год" if age % 10 == 1 else "года" if age % 10 <= 4 else "лет"
         self.weightLineEdit.setPlaceholderText(f"Вес: {user[1]} кг.")
         self.heightLineEdit.setPlaceholderText(f"Рост: {user[0]} см.")
         self.ageLineEdit.setPlaceholderText(f"Возраст: {age} {age_text}")
