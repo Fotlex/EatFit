@@ -55,6 +55,7 @@ class EatFitApp(QMainWindow, Ui_MainWindow):
         selected_date = self.date_selector.calendar.selectedDate()
         iso_date = selected_date.toString(Qt.ISODate)
         self.home_page.change_current_date(iso_date)
+        self.date_selector.close()
 
     def show_home_page(self):
         self.stackedWidget.setCurrentIndex(0)
