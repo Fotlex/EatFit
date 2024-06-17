@@ -101,6 +101,7 @@ class ProductsPage(QWidget):
 
         self.pm.add_product(name, proteins, fats, carbohydrates, calories)
         self.show_products()
+        self.add_window.close()
 
     def edit_product(self):
         selected_row = self.table_widget.currentRow()
@@ -125,6 +126,7 @@ class ProductsPage(QWidget):
             self.pm.update_product(self.table_widget.item(selected_row, 0).text(),
                                    name, proteins, fats, carbohydrates, calories)
             self.show_products()
+            self.edit_window.close()
 
     def delete_product(self):
         selected_rows = self.table_widget.selectionModel().selectedRows()
